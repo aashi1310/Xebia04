@@ -1,161 +1,281 @@
-# 🔐 AuthDash – Authentication Dashboard
+# Authentication Dashboard
 
-A modern, full-featured **React.js** authentication system built with **Vite**, featuring a dark glassmorphism UI, complete user registration/login flows, and a rich protected dashboard — all powered by **localStorage** (no backend required).
+A modern React-based Authentication Dashboard built using React (Vite), React Router, Local Storage, and React Toastify. The application provides a complete user authentication flow with Registration, Login, Dashboard, Profile Management, Password Management, Settings, and Help Center functionality.
 
----
+## Features
 
-## ✨ Features
+### Authentication
+- User Registration
+- User Login
+- Protected Dashboard Route
+- Session Management using Local Storage
+- Logout Functionality
 
-### 🔒 Authentication
-- **Registration** – Full Name, Email, Password, Confirm Password with live validation
-- **Login** – Email & password with credential verification
-- **Protected Routes** – Dashboard requires authentication; auto-redirects to login
+### Dashboard
+- Personalized Welcome Section
+- User Profile Card
+- User Avatar Generation
+- Account Information Display
+- Dashboard Statistics
 
-### 📊 Dashboard
-- Personalized greeting (Good morning / afternoon / evening)
-- Statistics cards: Total users, account status, member since date
-- User profile card with avatar initials and online badge
-- Recent activity feed
-- Quick action buttons
-- Registered users list with "You" badge for the current user
+### Quick Actions
+- Edit Profile
+- Change Password
+- Settings
+- Help Center
 
-### 🎨 UI & UX
-- Dark-mode glassmorphism design with indigo + cyan gradient theme
-- Sticky navbar with glassmorphism effect
-- Password strength meter (Weak / Medium / Strong)
-- Real-time field validation with inline error & success messages
-- Password show/hide toggle on all password fields
-- Loading spinners on submit buttons
-- Toast notification system (success / error / info) with slide animations
-- Smooth page transition animations
-- Fully responsive – works on mobile, tablet, desktop
-- Mobile hamburger navigation menu
+### Profile Management
+- Update Name
+- Update Email
+- Email Validation
+- Duplicate Email Prevention
 
----
+### Password Management
+- Change Password
+- Current Password Verification
+- Password Validation
+- Secure Update Flow
 
-## 🛠️ Tech Stack
+### Settings
+- Light and Dark Theme Support
+- Remember Me Option
+- Email Notification Preferences
+- Marketing Notification Preferences
+- Persistent User Preferences
 
-| Technology       | Purpose                          |
-|-----------------|----------------------------------|
-| React.js (v18)  | UI framework                     |
-| Vite            | Build tool & dev server          |
-| React Router v6 | Client-side routing              |
-| localStorage    | Data persistence (no backend)    |
-| Vanilla CSS     | Styling with CSS variables       |
-| Inter (Google Fonts) | Typography                  |
+### Help Center
+- Contact Information
+- Frequently Asked Questions
+- Privacy Information
 
----
+### User Experience
+- Responsive Design
+- Mobile Friendly Layout
+- Toast Notifications
+- Form Validation
+- Loading States
+- Smooth Transitions
+- Modern User Interface
 
-## 📁 Project Structure
+## Tech Stack
 
-```
+### Frontend
+- React.js
+- Vite
+- React Router DOM
+- React Hooks
+
+### State & Storage
+- Local Storage
+
+### Notifications
+- React Toastify
+
+### Styling
+- CSS3
+- Responsive Design
+
+## Project Structure
+
+```bash
 src/
+│
 ├── components/
-│   ├── Navbar.jsx          # Sticky responsive navbar
-│   └── ProtectedRoute.jsx  # Auth guard for routes
-├── context/
-│   └── ToastContext.jsx    # Global toast notification system
+│   ├── Navbar.jsx
+│   ├── ProtectedRoute.jsx
+│
+├── components/modals/
+│   ├── EditProfileModal.jsx
+│   ├── ChangePasswordModal.jsx
+│   ├── SettingsModal.jsx
+│   └── HelpCenterModal.jsx
+│
 ├── pages/
-│   ├── Login.jsx           # Login page with validation
-│   ├── Register.jsx        # Registration page with strength meter
-│   ├── Dashboard.jsx       # Protected user dashboard
-│   └── NotFound.jsx        # 404 page
+│   ├── Login.jsx
+│   ├── Register.jsx
+│   ├── Dashboard.jsx
+│   └── NotFound.jsx
+│
 ├── styles/
-│   ├── Auth.css            # Login & Register styles
-│   ├── Dashboard.css       # Dashboard & stats styles
-│   └── Navbar.css          # Navbar styles
-├── utils/
-│   └── storage.js          # localStorage CRUD utilities
-├── App.jsx                 # Root with BrowserRouter + routes
-├── index.css               # Global design system & tokens
-└── main.jsx                # React DOM entry point
+│   ├── App.css
+│   ├── Dashboard.css
+│   ├── Modal.css
+│   └── Navbar.css
+│
+├── App.jsx
+├── main.jsx
+│
+public/
+package.json
+README.md
 ```
 
----
+## Application Flow
 
-## 🚀 Getting Started
+### Registration
 
-### Prerequisites
-- Node.js ≥ 16
-- npm ≥ 7
+1. User enters:
+   - Full Name
+   - Email Address
+   - Password
+   - Confirm Password
 
-### Installation
+2. Validation Checks:
+   - Required fields
+   - Valid email format
+   - Password length
+   - Password confirmation
+   - Duplicate email prevention
 
-```bash
-# 1. Install dependencies
-npm install
+3. User data is stored in Local Storage.
 
-# 2. Start the development server
-npm run dev
-```
+### Login
 
-Open **http://localhost:5173** in your browser.
+1. User enters:
+   - Email
+   - Password
 
-### Build for production
+2. Credentials are verified.
 
-```bash
-npm run build
-npm run preview
-```
+3. User session is stored in Local Storage.
 
----
+4. User is redirected to Dashboard.
 
-## 🗄️ localStorage Schema
+### Dashboard
 
-### Users list (`authdash_users`)
+The dashboard displays:
+
+- User Name
+- User Email
+- Registration Date
+- User Avatar
+- Total Registered Users
+- Last Login Information
+
+Quick Action buttons allow users to:
+
+- Edit Profile
+- Change Password
+- Manage Settings
+- Access Help Center
+
+## Local Storage Structure
+
+### Users
+
 ```json
 [
   {
-    "id": 1717483200000,
-    "name": "Aashika Jain",
-    "email": "aashika@gmail.com",
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
     "password": "password123",
     "createdAt": "2026-06-04"
   }
 ]
 ```
 
-### Current session (`authdash_current_user`)
+### Current User
+
 ```json
 {
-  "id": 1717483200000,
-  "name": "Aashika Jain",
-  "email": "aashika@gmail.com"
+  "id": 1,
+  "name": "John Doe",
+  "email": "john@example.com"
 }
 ```
 
----
+### Settings
 
-## 🔐 Routes
+```json
+{
+  "theme": "dark",
+  "rememberMe": true,
+  "emailNotifications": true,
+  "marketingNotifications": false
+}
+```
 
-| Path         | Access      | Description             |
-|-------------|-------------|-------------------------|
-| `/`          | Public      | Redirects to `/login`   |
-| `/login`     | Public      | Login form              |
-| `/register`  | Public      | Registration form       |
-| `/dashboard` | 🔒 Protected | User dashboard          |
-| `/*`         | Public      | 404 Not Found page      |
+## Installation
 
----
+### Clone Repository
 
-## 🎨 Design System
+```bash
+git clone https://github.com/your-username/authentication-dashboard.git
+```
 
-| Token              | Value                     |
-|-------------------|---------------------------|
-| Background        | `#0a0e1a`                 |
-| Surface           | `#111827`                 |
-| Primary           | `#6366f1` (Indigo)        |
-| Secondary         | `#06b6d4` (Cyan)          |
-| Success           | `#10b981`                 |
-| Error             | `#ef4444`                 |
-| Font              | Inter (Google Fonts)      |
+### Navigate to Project Directory
 
----
+```bash
+cd authentication-dashboard
+```
 
-## 📝 Notes
+### Install Dependencies
 
-> ⚠️ **Security Notice**: This project stores passwords in plain text in localStorage for demonstration purposes only. In a real production application, always hash passwords server-side (e.g., bcrypt) and use a secure backend with HTTPS.
+```bash
+npm install
+```
 
----
+### Start Development Server
 
-Built with ❤️ as an internship assessment project.
+```bash
+npm run dev
+```
+
+## Available Scripts
+
+### Start Development Server
+
+```bash
+npm run dev
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+## Future Enhancements
+
+- Backend Integration
+- JWT Authentication
+- MongoDB Database
+- Profile Image Upload
+- Email Verification
+- Forgot Password Functionality
+- Multi-Factor Authentication
+- Activity Logs
+- Admin Dashboard
+- User Management System
+
+## Learning Outcomes
+
+This project demonstrates:
+
+- React Fundamentals
+- React Router
+- Component-Based Architecture
+- State Management with Hooks
+- Form Handling and Validation
+- Local Storage Integration
+- Protected Routes
+- Responsive UI Development
+- User Authentication Flow
+- Modular Code Organization
+
+## Author
+
+**Aashika Jain**
+
+Engineering Student | Full Stack Development Enthusiast
+
+## License
+
+This project is created for educational and internship assessment purposes.
