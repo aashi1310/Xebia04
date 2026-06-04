@@ -1,0 +1,30 @@
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import org.json.JSONArray;
+import org.json.JSONObject;
+public class UserPosts {
+    public static void main(String[] args) {
+        try {
+            HttpClient client = HttpClient.newBuilder().build();
+
+            HttpRequest req = HttpRequest.newBuilder()
+                    .uri(new URI("https://jsonplaceholder.typicode.com/posts?userId=3"))
+                    .GET()
+                    .build();
+            HttpResponse<String> res = client.send(
+                    req,
+                    HttpResponse.BodyHandlers.ofString());
+            JSONArray arr = new JSONArray(res.body());
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject post = arr.getJSONObject(i);
+                String title = post.getString("title");
+                System.out.println(title.toUpperCase());
+            }
+            System.out.println("Total Posts : " + arr.length());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
